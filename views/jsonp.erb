@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Sinatra with js</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+
+                // we use submit instead of click to take advantage of things like
+                // using the enter key to submit
+                $('form').on('submit', function(e){
+                    e.preventDefault();
+                    var query = $('#query').val();
+
+                    var url = `http://en.wikipedia.org/w/api.php?format=json&action=query&titles=${query}&prop=revisions&rvprop=content&callback=asd`;
+                    //var url = `https://github.com/search?q=${query}`
+                    $.ajax(url, {
+                        success: function(response) {
+                            console.log(response.query.pages)
+/*                              for(page in response.query.pages) {
+                                var title = response.query.pages[page].title;
+                                var revision = response.query.pages[page].revisions[0];
+                                var content = revision['*'];
+
+                                $('#results h2').html(title);
+                                $('#results .content').html(content);
+                            } */
+
+
+                            $('#results').html();
+
+                        },
+                        dataType: "jsonp",
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <div id='header'>
+            Search:
+            <form>
+                <input type='text' name='query' id='query' />
+                <input type='submit' name='submit' id='submit' value='Search' />
+            </form>
+        </div>
+
+        <div id='results'>
+            <h2></h2>
+            <div class='content'>
+            </div>
+        </div>
+
+    </body>
+</html>

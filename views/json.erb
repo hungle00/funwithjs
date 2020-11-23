@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Sinatra with js</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+
+                // we use submit instead of click to take advantage of things like
+                // using the enter key to submit
+                $('form').on('submit', function(e){
+                    e.preventDefault();
+                    var query = $('#query').val();
+
+                    var url = '/fetch';
+
+                    $('#results').html("Patience my friend");
+
+                    $.ajax(url, {
+                        success: function(response) {
+                            var content = response.some_other_shit;
+                            $('#results').html(content);
+
+                        },
+                        dataType: "json",
+                    });
+                });
+            });
+        </script>
+  </head>
+    <body>
+
+        <div id='header'>
+            Search:
+            <form>
+                <input type='text' name='query' id='query' />
+                <input type='submit' name='submit' id='submit' value='Search' />
+            </form>
+        </div>
+
+        <div id='results'>
+            <h2></h2>
+            <div class='content' style='whitespace: pre;'>
+            </div>
+        </div>
+
+    </body>
+</html>
