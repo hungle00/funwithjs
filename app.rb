@@ -1,38 +1,29 @@
 require 'sinatra'
-require 'nokogiri'
 require 'open-uri'
 require 'json'
 
 set :server, :thin
 
 get '/' do
-  send_file "views/index.html"
+  erb :index
 end
 
-class Stream
-  def each
-    100.times { |i| yield "#{i}\n" }
+get('/bottles', :provides => 'text/event-stream') do
+  stream do |out|
+    1000.times do |i|
+      out << "#{i} bottle(s) on a wall...\n"
+      sleep 0.5
+    end
   end
 end
 
-get('/bottles') { Stream.new }
-
-
-get '/fetch' do
-
-  doc = Nokogiri::HTML(open('https://github.com/'))
-  response = {
-    :content => doc.content,
-    :some_other_shit => 'poop',
-  }
-
-  response.to_json
+get '/jsonb' do
+  erb :jsonb
 end
 
-get '/json' do
-  erb :json
+get '/recipe' do
+  erb :recipe
 end
 
-get '/jsonp' do
-  erb :jsonp
-end
+
+

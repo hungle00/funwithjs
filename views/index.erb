@@ -1,14 +1,4 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-    <title>Sinatra with js</title> 
-    <meta charset="utf-8" /> 
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <![endif]--> 
-  </head> 
-  <body> 
-    <script>
+<script>
     let eventSource;
 
     function start() { // when "Start" button pressed
@@ -51,12 +41,9 @@
       logElem.innerHTML += msg + "<br>";
       document.documentElement.scrollTop = 99999999;
     }
-    </script>
+</script>
 
-    <button onclick="start()">Start</button> Press the "Start" to begin.
-    <div id="logElem" style="margin: 6px 0"></div>
+<button onclick="start()">Start</button> Press the "Start" to begin.
+<div id="logElem" style="margin: 6px 0"></div>
 
-    <button onclick="stop()">Stop</button> "Stop" to finish.
-
-  </body>
-</html>
+<button onclick="stop()">Stop</button> "Stop" to finish.
