@@ -1,0 +1,17 @@
+.Recipe-IngredientList {
+    width: 250px;
+    border: 1px solid #777;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  .Recipe-Ingredient {
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+  }
+  .Recipe-Ingredient:last-child {
+    border-bottom: none;
+  }
+  .Recipe-Ingredient span {
+    font-weight: 600;
+  }

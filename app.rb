@@ -1,8 +1,7 @@
 require 'sinatra'
-require 'open-uri'
-require 'json'
 
 set :server, :thin
+#set :public_folder
 
 get '/' do
   erb :index
