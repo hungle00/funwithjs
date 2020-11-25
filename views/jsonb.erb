@@ -1,49 +1,58 @@
+<link href="<%= url('/css/jsonb.css') %>" rel="stylesheet" type="text/css" />
+<div class="container">
+  <h1>Wikipedia Search</h1>
+  <div id="input">
+  <input class="form-control" id="searchTerm" placeholder="Search"></br>
+  </div>
 
-        <script>
-            $(document).ready(function(){
+  <div class="row">
+      <button class="btn" id="search">Search</button>
+      <button class="btn"><a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Random</a> </button>
+  </div>
 
-                // we use submit instead of click to take advantage of things like
-                // using the enter key to submit
-                $('form').on('submit', function(e){
-                    e.preventDefault();
-                    var query = $('#query').val();
+  <ul id="output">
+  
+  </ul>
+</div>
 
-                    var url = `http://en.wikipedia.org/w/api.php?format=json&action=query&titles=${query}&prop=revisions&rvprop=content&callback=asd`;
-                    //var url = `https://github.com/search?q=${query}`
-                    $.ajax(url, {
-                        success: function(response) {
-                            console.log(response.query.pages)
-/*                              for(page in response.query.pages) {
-                                var title = response.query.pages[page].title;
-                                var revision = response.query.pages[page].revisions[0];
-                                var content = revision['*'];
+ <script>
+ $(document).ready(function(){
+  
+  $('#search').click(function(){
+    var searchValue = $('#searchTerm').val();
+    
+    var api = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exlimit=max&format=json&exsentences=1&exintro=&explaintext=&generator=search&gsrlimit=10&gsrsearch="; 
 
-                                $('#results h2').html(title);
-                                $('#results .content').html(content);
-                            } */
+    
+    var url = api + searchValue;
+    var wikilink = 'http://en.wikipedia.org/?curid=';
+    var html = "";
+    
+    $.ajax({
+      url : url,
+      type : 'GET',
+      dataType : 'jsonp',
+      async : false,
+      success : function(data){
+        console.log(url);
+        var results = data.query.pages;
+            var pgs = Object.keys(results);
+            pgs.forEach(function (page) {
+                var title = results[page].title;
+                var text = results[page].extract;
+                var pagelink = wikilink + results[page].pageid;
 
-
-                            $('#results').html();
-
-                        },
-                        dataType: "jsonp",
-                    });
-                });
+                html += '<a href="' + pagelink + '" >' + '<div class="item">' + title + '<br>' + '<p class="description-text" >' + text + '</p>' + '</div></a>  <br> ';
             });
-</script>
-<body>
 
-        <div id='header'>
-            Search:
-            <form>
-                <input type='text' name='query' id='query' />
-                <input type='submit' name='submit' id='submit' value='Search' />
-            </form>
-        </div>
-
-        <div id='results'>
-            <h2></h2>
-            <div class='content'>
-            </div>
-        </div>
-</body>
+            $('#output').html(html);
+        },
+        error : function(errorMessage){
+          console.log(errorMessage);
+        }
+      
+    });
+    
+   })
+})
+ </script>

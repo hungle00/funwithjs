@@ -24,5 +24,18 @@ get '/recipe' do
   erb :recipe
 end
 
+get '/upload' do
+  erb :upload
+end
 
+post '/upload' do
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+
+  File.open("./public/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+
+  erb :show_image
+end
 

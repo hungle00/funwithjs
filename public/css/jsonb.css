@@ -1,0 +1,35 @@
+.container{
+    margin-top: 5%;  
+  }
+  h1{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #input{
+    width: 50%;
+    margin-left: 25%;
+  }
+  .row {
+    margin-left: 30%;
+    margin-top: 10px;
+  }
+  button {
+    margin-left: 12%;
+    background-color: #e6f0ff;
+  }
+  #output {
+    margin-left: 25%;
+    margin-top: 20px;
+    width: 50%;
+  }
+  .item {
+      font-size: 20px;
+      display: inline-block;
+      margin: 5px;
+      color: #003380;
+      background-color: #e6f0ff;
+      padding: 8px;
+  }
+  .description-text {
+      font-size: 14px;
+  }
