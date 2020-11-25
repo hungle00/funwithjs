@@ -96,9 +96,12 @@ ul{
   background:#ffffcc;
   border-left:9px solid #ffff00;
 }
-#slow{
 
+h1{
+  text-align: center;
+  margin-bottom: 20px;
 }
+
 .hide{
   display:none;
 }

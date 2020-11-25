@@ -1,49 +1,24 @@
-<script>
-    let eventSource;
-
-    function start() { // when "Start" button pressed
-      if (!window.EventSource) {
-        // IE or an old browser
-        alert("The browser doesn't support EventSource.");
-        return;
-      }
-
-      eventSource = new EventSource('/bottles');
-
-      eventSource.onopen = function(e) {
-        log("Event: open");
-      };
-
-      eventSource.onerror = function(e) {
-        log("Event: error");
-        if (this.readyState == EventSource.CONNECTING) {
-          log(`Reconnecting (readyState=${this.readyState})...`);
-        } else {
-          log("Error has occured.");
-        }
-      };
-
-      eventSource.addEventListener('bye', function(e) {
-        log("Event: bye, data: " + e.data);
-      });
-
-      eventSource.onmessage = function(e) {
-        log("Event: message, data: " + e.data);
-      };
-    }
-
-    function stop() { // when "Stop" button pressed
-      eventSource.close();
-      log("eventSource.close()");
-    }
-
-    function log(msg) {
-      logElem.innerHTML += msg + "<br>";
-      document.documentElement.scrollTop = 99999999;
-    }
-</script>
-
-<button onclick="start()">Start</button> Press the "Start" to begin.
-<div id="logElem" style="margin: 6px 0"></div>
-
-<button onclick="stop()">Stop</button> "Stop" to finish.
+<section class='main-section' id='configuration'>
+    <header><h1>WELCOME</h1></header>
+    <h2 id='cf'>Config File</h2>
+    <p>Your project structure is probably like this:</p>
+                  
+    <p>
+        Disable click chuột phải
+    </p>
+                  
+    <div class= 'code'>
+        <code>
+          $(document).bind("contextmenu",function(e){<br>
+            //Trong này có thể viết hàm xử lý gì đó tùy bạn<br>
+            // Return false để loại bỏ thao tác với chuột phải<br>
+            return false;<br>
+        });</code>       
+    </div>
+                          
+    <h2 id='tc'>Conclusion</h2>
+    <p>
+        Again. You might not need jQuery. But if you’re aggressively removing or avoiding
+        it as an optimisation, make sure it’s not a premature one.
+    </p>
+</section> 
