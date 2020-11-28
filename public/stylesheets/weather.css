@@ -1,0 +1,29 @@
+.main-app {
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+  border-style: hidden;
+  background-color: #F1F1F1;
+}
+h1{
+  display: flex;
+}
+#content{
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+.btn {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 10px;
+  margin: 10px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.btn:hover {opacity: 0.6}

@@ -1,0 +1,73 @@
+<link href="<%= url('/stylesheets/weather.css') %>" rel="stylesheet" type="text/css" />
+<div class="main-app">
+  <h1 class="text">THE LOCAL WEATHER APP</h1>
+  <br>
+  <div id="content">
+    <div class="col">
+      <p>Address</p>
+      <div id="city"></div>
+      <div id="country"></div>
+    </div>
+    <div class="col">
+      <p>Temperature</p>
+      <span id="temp"></span>
+      <span id="tempunit"></span>
+      <br>
+      <button class= "btn"id="convert">Convert</button>
+    </div>
+    <div class="col">
+      <p>Weather</p>
+      <p id="desc"></p>
+  </div>
+</div>
+
+<script>
+var api = "https://fcc-weather-api.glitch.me/api/current?";
+var lat, lon;
+var tempUnit = "C";
+var tempC ;
+
+$(document).ready(function(){
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var lat = "lat=" + position.coords.latitude;
+      var lon = "lon=" + position.coords.longitude;
+      getWeather(lat, lon);
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+  
+ $("#convert").click(function(){
+    var curTemp = $("#tempunit").text();
+ 
+  if (curTemp == "C"){
+     $("#tempunit").text("F");
+     var tempF = parseInt($("#temp").text()) * 9 / 5 + 32;
+    $("#temp").text(tempF);
+  } 
+     else {
+      $("#tempunit").text("C");
+      $("#temp").text(tempC);
+  }
+ });
+ 
+})
+
+function getWeather(lat, lon) {
+  var urlString = api + lat + "&" + lon;
+  $.ajax({
+    url: urlString,
+    success: function (result) {
+      $("#city").text(result.name + ", ");
+      $("#country").text(result.sys.country);
+      tempC = result.main.temp
+          $("#temp").text(tempC + " " + String.fromCharCode(176));
+      $("#tempunit").text(tempUnit);
+      
+     $("#desc").text(result.weather[0].main);
+ 
+    }
+  });
+}
+</script>

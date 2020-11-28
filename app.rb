@@ -43,5 +43,9 @@ class MyApp < Sinatra::Base
 
     erb :show_image
   end
+
+  get '/weather' do
+    erb :weather
+  end
 end
 

@@ -1,0 +1,50 @@
+.main-app{
+  position: absolute;
+  width: 80%;
+  text-align: center;
+}
+
+input[type="search"] {
+  border: solid 2px rgb(19, 2, 2);
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  color: rgb(19, 2, 2);
+  font-size: 1rem;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #e6f0ff;
+  border: solid 2px #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 100px;
+}
+
+button:focus {outline: none;}
+button:hover {
+  cursor: pointer;
+  transform: translate(0, -2px);
+}
+#output {
+  margin-left: 20%;
+  margin-top: 20px;
+  width: 60%;
+}
+.item {
+  font-size: 20px;
+  display: inline-block;
+  margin: 5px;
+  color: #003380;
+  background-color: #e6f0ff;
+  padding: 8px;
+}
+.description-text {
+  font-size: 14px;
+}

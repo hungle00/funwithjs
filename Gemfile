@@ -4,6 +4,7 @@ source "http://rubygems.org"
 gem "sinatra"
 gem "thin"
 gem 'rake'
+gem 'sass'
 
 #group :development do
 #  gem "shotgun"

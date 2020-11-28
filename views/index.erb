@@ -7,18 +7,20 @@
         Disable click chuột phải
     </p>
                   
-    <div class= 'code'>
-        <code>
-          $(document).bind("contextmenu",function(e){<br>
-            //Trong này có thể viết hàm xử lý gì đó tùy bạn<br>
-            // Return false để loại bỏ thao tác với chuột phải<br>
-            return false;<br>
-        });</code>       
-    </div>
+    <h2>Code!</h2>
+    <pre><code class="language-js">const markdown = document.querySelectorAll('markdown')
+
+    markdown.forEach(elem => {
+    elem.innerHTML = marked(elem.textContent, {
+        breaks: true
+    })
+    })</code></pre>
                           
     <h2 id='tc'>Conclusion</h2>
-    <p>
-        Again. You might not need jQuery. But if you’re aggressively removing or avoiding
-        it as an optimisation, make sure it’s not a premature one.
-    </p>
+    <div id="content"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.getElementById('content').innerHTML =
+            marked('# Marked in the browser\n\nRendered by **marked**.');
+    </script>
 </section> 

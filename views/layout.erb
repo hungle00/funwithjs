@@ -2,58 +2,54 @@
 <html>
   <head>
     <title>Sinatra with js</title>
-    <link href="<%= url('/css/style.css') %>" rel="stylesheet" type="text/css" />
+    <link href="<%= url('/stylesheets/style.css') %>" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
 
   <body>
-    <main id='main-doc'> 
-      <div id='top'><a href='#introduction'> &uarr;</a></div>
-      <nav id=navbar>
-        <header><h1>JavaScript Project</h1>  </header>
-        <div>
-          <ul>
-            <li class='linkup' ><a href='#introduction' class='nav-link' id='duc'>INTRODUCTION</a>     
-            </li>
+    <div class='wrapper'> 
+      <sidebar class="sidebar">
+        <header><h1><a href='/' class='nav-link'>JavaScript Project</a></h1>  </header>
+          <ul class="navigation">
+            <li><a href='#introduction' class='nav-link' id='duc'>INTRODUCTION</a>     </li>
             <li><a href='/stream' class='gs'>Stream events</a>
-            <li><a href='/wiki' class='gs'>Get ajax</a>
+            <li><a href='/wiki' class='gs'>Wiki</a>
+            <li><a href='/weather' class='gs'>Weather</a>
             <li><a href='/recipe' class='gs'>Recipe</a>
             <li><a href='/upload' class='gs'>Upload file</a>
-            
-            <li><a href='/' class='nav-link'>Welcome</a>
           </ul>
+      </sidebar>
+      <main class='content'>
+        <div class='inner'>
+          <section class='main-section' id='introduction'>
+            <header>
+              <h1>INTRODUCTION</h1><hr>
+            </header>
+            <p>
+              jQuery has been around since the dawn of man, and the original versions were pressed
+              into clay and then baked. Modern sensibilities tell us that jQuery’s utility has gone,
+              that it’s no longer helpful. But often these articles handwave some genuine issues
+              that show jQuery actually still provides significant value.
+              
+              The biggest of these articles is an entire website at you might not need jquery.
+              It’s important to be up front here. The site is well titled. You might not.
+              You probably don’t. But you also might.
+          </p> 
+          </section>
+          <br>
+          <hr>
+          <br>
+
+          <section class='main-section' id='getting_started'>
+            <header>
+              <h1>GETTING STARTED</h1><hr>
+            </header>
+            <%= yield %>
+          </section>    
         </div>
-      </nav>
-      <div id='main'>
-      <section class='main-section' id='introduction'>
-        <header>
-          <h1>INTRODUCTION</h1><hr>
-         </header>
-          <p>
-            jQuery has been around since the dawn of man, and the original versions were pressed
-            into clay and then baked. Modern sensibilities tell us that jQuery’s utility has gone,
-            that it’s no longer helpful. But often these articles handwave some genuine issues
-            that show jQuery actually still provides significant value.
-            
-            The biggest of these articles is an entire website at you might not need jquery.
-            It’s important to be up front here. The site is well titled. You might not.
-            You probably don’t. But you also might.
-        </p> 
-        </section>
-        <br>
-        <hr>
-        <br>
-
-        <section class='main-section' id='getting_started'>
-          <header>
-            <h1>GETTING STARTED</h1><hr>
-          </header>
-           <%= yield %>
-        </section>
-
-      </div>  
-    </main>
+      </main>  
+    </div>
     <script src="js/index.js"></script>
   </body>
 </html> 
