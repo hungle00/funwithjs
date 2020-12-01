@@ -1,9 +1,11 @@
 require 'sinatra'
+require 'redcarpet'
+
 
 class MyApp < Sinatra::Base
 
   set :server, :thin
-
+  
   get '/' do
     erb :index
   end
@@ -41,11 +43,52 @@ class MyApp < Sinatra::Base
       f.write(file.read)
     end
 
-    erb :show_image
+    #redirect '/upload'
+    erb :_image, :layout => false
   end
 
   get '/weather' do
     erb :weather
+  end
+
+
+  #### MARKDOWN 
+
+  parser_options = {
+    autolink: true,
+    tables: true,
+    fenced_code_blocks: true,
+    disable_indented_code_blocks: true,
+    underline: true
+  }
+
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,  parser_options)
+
+  get '/show' do
+    @mds = Dir.entries("./pages")[2..-1]
+
+    erb :show_md
+  end
+
+  post '/show' do
+    input = File.read "./pages/#{params['md']}"
+    markdown.render(input)
+  end
+
+  get '/markdown' do
+    erb :markdown
+  end
+
+  post '/preview' do
+    markdown.render(params['md'])
+  end
+
+  post '/markdown' do
+    @text = params[:s]
+
+    File.open("./pages/new.md", 'wb') do |f|
+      f.write(@text)
+    end
   end
 end
 

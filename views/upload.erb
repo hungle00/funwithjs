@@ -1,6 +1,56 @@
 <h1>Upload Image</h1>
         
-<form action="/upload" method="POST" enctype="multipart/form-data">
+<form id="upload" action="/upload" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="submit" value="Upload image">
 </form>
+
+<script>
+  $(document).ready(function() {
+    let $form = $("#upload");
+    $form.submit(function(event) {
+      event.preventDefault();
+      let formData = new FormData(this);
+      startUpload(formData, $form);
+    })
+  })
+
+  function startUpload(formData, $form) {
+
+    jQuery.ajax({
+        type: 'POST',
+        url: '/upload',
+
+        data: formData,
+        processData: false, //IMPORTANT!
+
+        cache: false,
+        contentType: false,
+
+        xhr: function () {
+            let xhr = jQuery.ajaxSettings.xhr();
+            if (xhr.upload) {
+                
+                xhr.upload.addEventListener(
+                  'progress', handleProgressEvent, false
+                );
+			          
+            }
+            return xhr;
+        },
+
+        success: function (data) {
+            $(".upload-progress").html(data)
+            //console.log("SUCCESS", data)
+        },
+
+        error: function (data) {
+            console.error(data);
+        }
+    })
+  }
+  function handleProgressEvent(progressEvent) {
+    console.log(progressEvent);
+  }
+
+</script>

@@ -1,0 +1,21 @@
+<ul id="list">
+  <% @mds.each do |md| %>
+    <li>
+      <a><%= md %></a>
+    </li>
+  <% end %>
+</ul>
+
+<div id="view" style="background-color: #F1F1F1;">
+
+</div>
+
+<script type="text/javascript">
+    $("#list a").click(function(event){
+        event.preventDefault();
+        console.log( $(this).text() )
+        $.post('/show', {md: $(this).text() }, function(response){
+            $('#view').html(response);
+        });
+    });
+</script>

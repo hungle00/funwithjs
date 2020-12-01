@@ -1,0 +1,31 @@
+<h2> Write markdown </h2>
+<form action="/markdown" id="upload">
+    <textarea id="markdown" style="width:100%;height:300px;"></textarea>
+    <hr>
+    <input type="submit" value="Save">
+</form>
+
+<div id="preview" ></div>
+
+<script type="text/javascript">
+    $('#markdown').keypress(function(event){
+        if(event.which == 13) {
+            $.post('/preview', {md:$('#markdown').val()}, function(response){
+                $('#preview').html(response);
+            });
+        }
+    });
+
+    $('#upload').submit(function(event) {
+        //event.preventDefault();
+        //console.log('hello')
+        
+        var $form = $( this ),
+            term = $form.find( "textarea[id='markdown']" ).val(),
+            url = $form.attr( "action" );
+ 
+        // Send the data using post
+        var posting = $.post( url, { s: term } );
+        posting.done(alert('Success'));
+    })
+</script>
