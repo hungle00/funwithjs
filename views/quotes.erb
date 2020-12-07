@@ -1,0 +1,28 @@
+<link href="<%= url('/stylesheets/quotes.css') %>" rel="stylesheet" type="text/css" />
+<div class="container-fluid">
+  <h1>Random Quotes Machine</h1>
+  <h2>Freecodecamp project</h2>
+  <br>
+  <button class="btn btn-primary" id="quote">Next Quotes</button>
+   <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large" target="_blank">
+    <button type="button" class="btn btn-primary">Tweet</button>
+  </a>
+  <div class="well">
+     <p id="quotearea"></p>
+  </div>
+</div>
+
+<script>
+var url = "https://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?";
+
+$(document).ready(function(){
+  $("#quote").on("click", function(){
+    
+    $.getJSON(url, function(data){
+        $("#quotearea").empty();
+        $("#quotearea").append('<blockquote>' + data.quoteText + '</blockquote>' + '<p id="author"> —  ' + data.quoteAuthor + '</p>');
+    });
+  });
+});  
+
+</script>

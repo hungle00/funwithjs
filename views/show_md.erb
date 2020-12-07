@@ -14,7 +14,7 @@
     $("#list a").click(function(event){
         event.preventDefault();
         console.log( $(this).text() )
-        $.post('/show', {md: $(this).text() }, function(response){
+        $.post('/markdown/show', {md: $(this).text() }, function(response){
             $('#view').html(response);
         });
     });

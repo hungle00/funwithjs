@@ -10,17 +10,8 @@ class MyApp < Sinatra::Base
     erb :index
   end
 
-  get '/stream' do
-    erb :stream
-  end
-
-  get('/stream', :provides => 'text/event-stream') do
-    stream do |out|
-      1000.times do |i|
-        out << "#{i} bottle(s) on a wall...\n"
-        sleep 0.5
-      end
-    end
+  get '/click' do
+    erb :click_event
   end
 
   get '/wiki' do
@@ -43,12 +34,15 @@ class MyApp < Sinatra::Base
       f.write(file.read)
     end
 
-    #redirect '/upload'
     erb :_image, :layout => false
   end
 
   get '/weather' do
     erb :weather
+  end
+
+  get '/quotes' do
+    erb :quotes
   end
 
 
@@ -64,26 +58,26 @@ class MyApp < Sinatra::Base
 
   markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,  parser_options)
 
-  get '/show' do
+  get '/markdown' do
     @mds = Dir.entries("./pages")[2..-1]
 
     erb :show_md
   end
 
-  post '/show' do
+  post '/markdown/show' do
     input = File.read "./pages/#{params['md']}"
     markdown.render(input)
   end
 
-  get '/markdown' do
+  get '/markdown/new' do
     erb :markdown
   end
 
-  post '/preview' do
+  post '/markdown/preview' do
     markdown.render(params['md'])
   end
 
-  post '/markdown' do
+  post '/markdown/create' do
     @text = params[:s]
 
     File.open("./pages/new.md", 'wb') do |f|

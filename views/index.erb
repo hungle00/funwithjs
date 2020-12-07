@@ -1,26 +1,25 @@
 <section class='main-section' id='configuration'>
     <header><h1>WELCOME</h1></header>
     <h2 id='cf'>Config File</h2>
-    <p>Your project structure is probably like this:</p>
-                  
-    <p>
-        Disable click chuột phải
-    </p>
+    <ul>
+        <li>You can view some js project</li>
+        <li>Or <a href="/markdown/new">write</a> or <a href="/markdown">view</a> markdown</li>
+    </ul>
                   
     <h2>Code!</h2>
-    <pre><code class="language-js">const markdown = document.querySelectorAll('markdown')
+    <pre><code class="language-js">
+    const markdown = document.querySelectorAll('markdown')
 
     markdown.forEach(elem => {
     elem.innerHTML = marked(elem.textContent, {
         breaks: true
     })
-    })</code></pre>
-                          
-    <h2 id='tc'>Conclusion</h2>
-    <div id="content"></div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        document.getElementById('content').innerHTML =
-            marked('# Marked in the browser\n\nRendered by **marked**.');
-    </script>
+    })</code></pre>                      
+
+    <hr>
+
+    <footer style="text-align: right;">
+        <span>Author: Le hung</span> <br>
+        <span><a href="https://github.com/hungle00/funwithjs">Project on Github</a></span>
+    </footer>
 </section> 

@@ -1,0 +1,33 @@
+.container-fluid{
+  text-align: center;
+}
+.well {
+  margin-left : 10%;
+  margin-right: 10%;
+  margin-top: 20px;
+  background-color: #cccccc;
+  padding-top: 30px;
+}
+button {
+  background-color: #e6f0ff;
+  border: solid 2px #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 100px;
+}
+
+button:focus {outline: none;}
+button:hover {
+  cursor: pointer;
+  transform: translate(0, -2px);
+}
+
+#quotearea{
+   box-shadow: 6px 6px 5px #5D5B3D;
+    font-family: monospace;
+}
+blockquote {
+  font-size:20px;
+  text-align: center;
+}

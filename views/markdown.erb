@@ -10,15 +10,13 @@
 <script type="text/javascript">
     $('#markdown').keypress(function(event){
         if(event.which == 13) {
-            $.post('/preview', {md:$('#markdown').val()}, function(response){
+            $.post('/markdown/preview', {md:$('#markdown').val()}, function(response){
                 $('#preview').html(response);
             });
         }
     });
 
     $('#upload').submit(function(event) {
-        //event.preventDefault();
-        //console.log('hello')
         
         var $form = $( this ),
             term = $form.find( "textarea[id='markdown']" ).val(),

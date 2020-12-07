@@ -1,0 +1,24 @@
+<div id="main" style="background-color: #F1F1F1;">
+  <h3>Disable selection to protect page from copy-paste</h3>
+  <div oncopy="alert('Copying forbidden!');return false">
+    Dear user,
+    The copying is forbidden for you.
+    If you know JS or HTML, then you can get everything from the page source though.
+  </div>
+
+<hr>
+  <h3>Disable click right mouse</h3>
+  <div id="right">
+    Dear user,
+    The right mouse click is forbidden for you.
+  </div>
+</div>
+
+<script>
+$("#right").bind("contextmenu",function(e){
+	//Trong này có thể viết hàm xử lý gì đó tùy bạn
+  alert('Right mouse click forbidden!')
+	// Return false để loại bỏ thao tác với chuột phải
+  return false;
+});
+</script>
